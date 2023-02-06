@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const withAuth = require("../utils/auth");
 const hasAudio = require("../utils/audioSupport");
-const { User, Language, Word, Scores } = require("../models")
+const { User, Language, Word, Scores, UserLanguages } = require("../models")
 const googleTTS = require('google-tts-api');
 const translate = require('@vitalets/google-translate-api');
 
@@ -22,9 +22,23 @@ router.get("/login", (req, res) => {
 
 //Startpage route
 router.get("/startpage", withAuth, async (req, res) => {
-  const language = await Language.findAll(
+  const languageData = await Language.findAll(
     { raw: true, }
   )
+  //Finds all of the user's languages
+  const userLang = await UserLanguages.findAll({
+    where: {
+      user_id: req.session.userID,
+    },
+    raw: true
+  })
+  console.log("This is the userLang")
+  console.log(userLang);
+
+  const langCheck = userLang.map(userLangObj => userLangObj.language_id)
+  const language = languageData.filter((language) => langCheck.includes(language.id));
+  // console.log("This is onlyUserLangs")
+  // console.log(onlyUserLangs);
   res.render("startpage", {
     language,
   });
