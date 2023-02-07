@@ -24,7 +24,6 @@
         "express-handlebars": "^6.0.6",
         "express-session": "^1.17.3",
         "google-tts-api": "^2.0.2",
-        "handlebars": "^4.7.7",
         "handlebars-async-helpers": "^1.0.4",
         "mysql2": "^2.3.3",
         "sequelize": "^6.24.0"
