@@ -20,7 +20,7 @@ DB_PASSWORD = "your mysql pw"
 
 ![alt text](./homescreen.png)
 
-[Heroku Link](https://egaugnal.herokuapp.com/)
+[Heroku Link](https://tranquil-crag-62768.herokuapp.com/)
 ## Credit
 Styling features were enhanced by https://css.glass
 
