@@ -3,7 +3,7 @@ const withAuth = require("../utils/auth");
 const hasAudio = require("../utils/audioSupport");
 const { User, Language, Word, Scores, UserLanguages } = require("../models")
 const googleTTS = require('google-tts-api');
-const translate = require('@vitalets/google-translate-api');
+const translater = require('@vitalets/google-translate-api');
 
 router.get("/", async (req, res) => {
   res.render("homepage", {
@@ -71,7 +71,7 @@ router.get("/learningpage/languageId/:languageId/wordIndex/:wordIndex", async (r
     nextBtnURL = `/learningpage/languageId/${languageId}/wordIndex/${wordIndex + 1}`;
   }
   //Transforms the english word to the desired language
-  const transformWord = await translate(displayWord.word_name, { to: selectedLanguage.short });
+  const transformWord = await translater.translate(displayWord.word_name, { to: selectedLanguage.short });
   const foreignWord = transformWord.text;
 
   //If the selected language has audio, create an audio for it
